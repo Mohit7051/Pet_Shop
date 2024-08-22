@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop - Pets</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Pet Shop</h1>
+        <a href="/pets/new">Add New Pet</a>
+    </header>
+    <main>
+        <h2>Available Pets</h2>
+        <ul>
+            <th:block th:each="pet : ${pets}">
+                <li>
+                    <h3 th:text="${pet.name}">Pet Name</h3>
+                    <p><strong>Type:</strong> <span th:text="${pet.type}">Pet Type</span></p>
+                    <p><strong>Description:</strong> <span th:text="${pet.description}">Pet Description</span></p>
+                    <p><strong>Food:</strong> <span th:text="${pet.food}">Pet Food</span></p>
+                    <p><strong>Price:</strong> $<span th:text="${pet.price}">Pet Price</span></p>
+                    <a th:href="@{/pets/{id}(id=${pet.id})}">View Details</a>
+                    <a th:href="@{/pets/edit/{id}(id=${pet.id})}">Edit</a>
+                    <form th:action="@{/pets/delete/{id}(id=${pet.id})}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            </th:block>
+        </ul>
+    </main>
+</body>
+</html>
